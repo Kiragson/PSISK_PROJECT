@@ -1,4 +1,4 @@
-
+//klasa stworzona na podstawie pliku xsd
 package pc.psisk.soap_webservice.webservice;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
