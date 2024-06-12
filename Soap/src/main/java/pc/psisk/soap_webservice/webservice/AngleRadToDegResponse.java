@@ -1,4 +1,5 @@
-
+//klasa stworzona na podstawie pliku xsd
+//klasa służąca do stworzenia odpowiedzi do zmiany kąta wyrażonego w radianach na stopnie
 package pc.psisk.soap_webservice.webservice;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
