@@ -68,10 +68,65 @@ Kabel Scharck CAT 6a U/FTP charakteryzuje się konstrukcją Unshielded Foiled Tw
 ### Stanowisko Badawcze
 Stanowisko badawcze pozwala na przeprowadzenie bezpośrednich testów wydajnościowych, pomiarów przepustowości oraz analizę zachowania sieci przy użyciu różnych protokołów i konfiguracji. Stanowisko składa się z dwóch komputerów połączonych bezpośrednio za pomocą kabla krosowanego CAT 6, co umożliwia przesył danych z maksymalną przepustowością do 10 Gbps przy częstotliwości do 500 MHz. 
 
-![Wizualizacja stanowiska badawczego](topologia_rysunek.jpg)
+![Wizualizacja stanowiska badawczego](grafiki/topologia_rysunek.jpg)
 
 Takie połączenie jest idealne do testowania aplikacji sieciowych, serwerów oraz innych urządzeń sieciowych w kontrolowanym środowisku. Testy przeprowadzane na tym stanowisku dostarczają cennych danych na temat opóźnień, przepustowości oraz odporności na zakłócenia, co jest kluczowe dla rozwoju i optymalizacji nowoczesnych rozwiązań sieciowych.
 
-![Zdjęcie stanowiska badawczego](topologia_zdjecie.jpg)
+![Zdjęcie stanowiska badawczego](grafiki/topologia_zdjecie.jpg)
 
 Na zdjęciu można zobaczyć faktyczne ustawienie sprzętu używanego w eksperymentach. Dwa laptopy wyposażone w oprogramowanie JMeter umożliwiają dokładne monitorowanie i analizę przesyłanych danych, co jest nieocenione w badaniach nad efektywnością sieci komputerowych.
+
+### Badanie dla poszczególnych protokołów
+
+#### Badanie wydajności mikroserwisów za pomocą HTTP
+
+W ramach badania wydajności mikroserwisów za pomocą protokołu HTTP, przeprowadzono testy wydajności dla różnych typów danych, w tym INT, STRING, SQL i LF, używając protokołów REST i SOAP. Wyniki są przedstawione w tabelach i wykresach poniżej.
+
+##### INT (HTTP)
+| Protocol | Sample Time (ms) | Bytes | Sent Bytes | Latency | Connect Time (ms) |
+|----------|------------------|-------|------------|---------|-------------------|
+| rest     | 3.8              | 234   | 155        | 3.4     | 0.2               |
+| soap     | 11.4             | 530   | 484.2      | 11.2    | 0.4               |
+| rest     | 4.25             | 233.71| 155        | 4.18    | 0.03              |
+| soap     | 8.32             | 529.14| 484.42     | 8.3     | 0.02              |
+
+![Wykres przedstawiający wyniki badania mikroserwisu dla INT](grafiki/http_INT.jpg)
+
+*Interpretacja:* REST wykazuje niższy czas odpowiedzi i niższą latencję w porównaniu do SOAP, co sugeruje większą efektywność REST w lekkich operacjach HTTP.
+
+##### STRING (HTTP)
+| Protocol | Sample Time (ms) | Bytes | Sent Bytes | Latency | Connect Time (ms) |
+|----------|------------------|-------|------------|---------|-------------------|
+| rest     | 5                | 166   | 196        | 5       | 0.4               |
+| soap     | 8.8              | 518   | 489        | 8.8     | 0.6               |
+| rest     | 1.28             | 165.71| 196        | 1.28    | 0.01              |
+| soap     | 8.74             | 518   | 489        | 8.68    | 0.02              |
+
+![Wykres przedstawiający wyniki badania mikroserwisu dla STRING](grafiki/http_string.jpg)
+
+*Interpretacja:* REST ponownie osiąga lepsze wyniki niż SOAP, co podkreśla jego przydatność dla prostych transakcji danych.
+
+##### SQL (HTTP)
+| Protocol | Sample Time (ms) | Bytes | Sent Bytes | Latency | Connect Time (ms) |
+|----------|------------------|-------|------------|---------|-------------------|
+| rest     | 20.8             | 348   | 133        | 20.4    | 0.4               |
+| soap     | 18.33            | 626.67| 473.17     | 18.33   | 0.5               |
+| rest     | 22.855           | 347.71| 133        | 22.81   | 0.02              |
+| soap     | 16.42            | 629.68| 473.65     | 16.39   | 0.04              |
+
+![Wykres przedstawiający wyniki badania mikroserwisu dla SQL](grafiki/http_SQL.jpg)
+
+*Interpretacja:* SOAP wykazuje ogólnie niższą latencję i czas odpowiedzi w porównaniu do REST, co może sugerować, że dla bardziej złożonych zapytań bazy danych SOAP jest bardziej odpowiedni, zapewniając stabilniejsze i szybsze przetwarzanie danych.
+
+##### LF (HTTP)
+| Protocol | Sample Time (ms) | Bytes | Sent Bytes | Latency | Connect Time (ms) |
+|----------|------------------|-------|------------|---------|-------------------|
+| rest     | 27.8             | 237   | 980155.6   | 25.8    | 6                 |
+| soap     | 68.2             | 583   | 1306775    | 68.2    | 1.6               |
+| rest     | 15.25            | 208   | 980146.01  | 15.02   | 1.28              |
+| soap     | 74.61            | 583   | 1306775    | 74.51   | 0.08              |
+
+![Wykres przedstawiający wyniki badania mikroserwisu dla LF](grafiki/http_LF.jpg)
+
+*Interpretacja:* REST okazuje się być znacznie bardziej efektywny w zakresie czasu odpowiedzi i latencji w porównaniu do SOAP. Mimo większych rozmiarów przesyłanych danych, REST demonstruje lepszą wydajność, co jest kluczowe przy transmisji dużych objętości danych.
+
