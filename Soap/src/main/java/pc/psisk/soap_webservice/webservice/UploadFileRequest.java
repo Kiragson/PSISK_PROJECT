@@ -1,4 +1,5 @@
-
+//klasa stworzona na podstawie pliku xsd
+//klasa służąca do stworzenia zapytania do wysłania pliku na serwer
 package pc.psisk.soap_webservice.webservice;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
