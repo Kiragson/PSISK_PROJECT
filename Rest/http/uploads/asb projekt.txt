@@ -1,0 +1,6 @@
+Jak komuś się przyda to basic info do projektu z AB:
+- ładny i czytelny pdf, zdjęcia, kody wszystko opisane,
+- diagram erd do tabel I use casy dla procedur i funkcji (ja miałem to podzielone na strony/funkcje typu tam logowanie, wypożyczanie, zwracanie itp),
+- ocena jak dobrze zrozumiałem zależy od ilości użytych elementów omawianych na wykładach czyli funkcje, procedury, kolekcje, sekwencje, pakiety, skrypty itd. 
+- on tak patrzy raczej pobieżnie na to więc trzeba mu tam mówić jak jest się czym "pochwalić" bo inaczej najprawdopodobniej nie zauważy,
+- terminy jak pisałem wcześniej, dwa najbliższe poniedziałki
