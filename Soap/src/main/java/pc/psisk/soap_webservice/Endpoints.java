@@ -1,3 +1,4 @@
+//klasa implementująca endpointy
 package pc.psisk.soap_webservice;
 
 import org.slf4j.Logger;
@@ -18,25 +19,34 @@ import java.util.List;
 @Endpoint
 public class Endpoints {
 
+    //dodanie obiektu klasy mikroserwis
     private final WebService service;
 
+    //stworzenie konstruktora incjującego obiekt serwisu
     public Endpoints(WebService service) {
         this.service = service;
     }
 
+    //endpoint do funkcji zamiany stopni na radiany
     @PayloadRoot(namespace = "http://psiskproj.com/webservice", localPart = "angleDegToRadRequest")
     @ResponsePayload
     public AngleDegToRadResponse angleDegToRadResponse(@RequestPayload AngleDegToRadRequest angleDegToRadRequest) {
+        //pobranie parametrów z zapytania
         double value = angleDegToRadRequest.getValue();
+        //wykonanie funkcji zamiany
         double r_val = service.convertDegToRad(value);
+        //utworzenie odpowiedzi
         AngleDegToRadResponse response = new AngleDegToRadResponse();
+        //dodanie parametrów do odpowiedzi
         response.setResult(r_val);
         return response;
     }
 
+    //endpoint do funkcji zamiany radianów na stopnie
     @PayloadRoot(namespace = "http://psiskproj.com/webservice", localPart = "angleRadToDegRequest")
     @ResponsePayload
     public AngleRadToDegResponse angleRadToDegResponse(@RequestPayload AngleRadToDegRequest angleRadToDegRequest) {
+        //pobranie parametrów z zapytania
         double value = angleRadToDegRequest.getValue();
         double r_val = service.convertRadToDeg(value);
         AngleRadToDegResponse response = new AngleRadToDegResponse();
