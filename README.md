@@ -130,3 +130,62 @@ W ramach badania wydajności mikroserwisów za pomocą protokołu HTTP, przeprow
 
 *Interpretacja:* REST okazuje się być znacznie bardziej efektywny w zakresie czasu odpowiedzi i latencji w porównaniu do SOAP. Mimo większych rozmiarów przesyłanych danych, REST demonstruje lepszą wydajność, co jest kluczowe przy transmisji dużych objętości danych.
 
+#### Badanie wydajności mikroserwisów za pomocą HTTPS
+
+W ramach badań przeprowadzono testy wydajności mikroserwisów korzystających z protokołów REST i SOAP za pośrednictwem HTTPS. Analiza wyników wskazuje na różnice w czasach odpowiedzi oraz przesyłanych danych między oboma protokołami.
+
+##### INT (HTTPS)
+| Protocol | Sample Time (ms) | Bytes | Sent Bytes | Latency | Connect Time (ms) |
+|----------|------------------|-------|------------|---------|-------------------|
+| rest     | 15.2             | 234   | 155        | 15.2    | 9.4               |
+| soap     | 22.0             | 529.8 | 484.4      | 22.0    | 14.6              |
+| rest     | 3.08             | 233.71| 155        | 2.9     | 0.48              |
+| soap     | 7.54             | 529.28| 484.51     | 7.49    | 0.56              |
+
+![INT HTTPS Results](grafiki/https_INT.png)
+
+*Interpretacja:* REST wykazuje lepszą wydajność w szyfrowanych połączeniach, co jest istotne dla aplikacji wymagających szybkiej i bezpiecznej komunikacji.
+
+##### STRING (HTTPS)
+| Protocol | Sample Time (ms) | Bytes | Sent Bytes | Latency | Connect Time (ms) |
+|----------|------------------|-------|------------|---------|-------------------|
+| rest     | 9                | 166   | 196        | 9       | 7                 |
+| soap     | 20               | 518   | 489        | 20      | 14.2              |
+| rest     | 1.48             | 165.71| 196        | 1.48    | 0.35              |
+| soap     | 5.91             | 518   | 489        | 5.87    | 0.67              |
+
+![STRING HTTPS Results](grafiki/https_STRING.png)
+
+*Interpretacja:* REST ponownie osiąga lepsze wyniki niż SOAP, podkreślając swoją skuteczność w szybkich odpowiedziach nawet w bezpiecznych połączeniach.
+
+##### SQL (HTTPS)
+| Protocol | Sample Time (ms) | Bytes | Sent Bytes | Latency | Connect Time (ms) |
+|----------|------------------|-------|------------|---------|-------------------|
+| rest     | 34.8             | 348   | 133        | 34.8    | 9.2               |
+| soap     | 39.4             | 625.4 | 473.8      | 39.4    | 15.6              |
+| rest     | 20.58            | 347.71| 133        | 20.57   | 0.48              |
+| soap     | 15.60            | 626.96| 473.66     | 15.58   | 0.72              |
+
+![SQL HTTPS Results](grafiki/https_SQL.png)
+
+*Interpretacja:* W przypadku zapytań SQL, różnice w wydajności między REST a SOAP są mniejsze, ale REST nadal utrzymuje przewagę w szybkości odpowiedzi.
+
+##### LF (HTTPS)
+| Protocol | Sample Time (ms) | Bytes | Sent Bytes | Latency | Connect Time (ms) |
+|----------|------------------|-------|------------|---------|-------------------|
+| rest     | 103.4            | 237   | 980153.8   | 103.4   | 58.4              |
+| soap     | 179.8            | 583   | 1306775    | 179.8   | 34.8              |
+| rest     | 43.92            | 208   | 980147.9   | 43.62   | 5.88              |
+| soap     | 161.52           | 583   | 1306775    | 161.35  | 6.03              |
+
+![LF HTTPS Results](grafiki/https_LF.png)
+
+*Interpretacja:* Dla dużych plików, REST wykazuje znacznie lepszą wydajność, co jest kluczowe przy obsłudze dużych wolumenów danych w bezpiecznym środowisku.
+
+### Wnioski do eksperymentu
+Na podstawie przeprowadzonych badań można stwierdzić, że zarówno SOAP, jak i REST API mają swoje zalety i wady. REST API charakteryzuje się krótszym czasem odpowiedzi i mniejszymi opóźnieniami, co czyni go bardziej wydajnym w zastosowaniach wymagających szybkich odpowiedzi. SOAP oferuje lepsze mechanizmy bezpieczeństwa i niezawodność, co może być kluczowe w aplikacjach wymagających wysokiego poziomu bezpieczeństwa i integralności danych.
+
+### Analiza i interpretacja
+REST generalnie zapewnia szybsze odpowiedzi niż SOAP we wszystkich testowanych typach danych, szczególnie w bezpiecznym środowisku HTTPS, gdzie różnice w wydajności są najbardziej zauważalne. Oba protokoły wykazują pewne pogorszenie wydajności przy przejściu z HTTP na HTTPS, jednak REST utrzymuje bardziej stabilne i bliższe poziomy wydajności między tymi protokołami, co sugeruje lepsze radzenie sobie z narzutem szyfrowania.
+
+
