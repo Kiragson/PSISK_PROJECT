@@ -1,3 +1,4 @@
+//klasa zawierająca konfugurację webservice
 package pc.psisk.soap_webservice;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
