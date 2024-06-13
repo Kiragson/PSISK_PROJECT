@@ -181,8 +181,49 @@ W ramach badań przeprowadzono testy wydajności mikroserwisów korzystających 
 ![LF HTTPS Results](grafiki/https_LF.png)
 
 *Interpretacja:* Dla dużych plików, REST wykazuje znacznie lepszą wydajność, co jest kluczowe przy obsłudze dużych wolumenów danych w bezpiecznym środowisku.
+##### Wnioski dla HTTPS
+W ramach badań przeprowadzono testy wydajności mikroserwisów korzystających
+z protokołów REST i SOAP za pośrednictwem HTTPS. Analiza wyników wskazuje
+na różnice w czasach odpowiedzi oraz przesyłanych danych między oboma protokołami.
+Protokół REST w wersji HTTPS, podobnie jak w przypadku HTTP, generalnie
+osiągał lepsze wyniki niż SOAP. REST wykazywał mniejsze czasy odpowiedzi oraz
+mniejszą latencję, co podkreśla jego efektywność w szyfrowanych połączeniach. Wynika
+to z mniejszego narzutu, który REST wprowadza, dzięki czemu jest bardziej odpowiedni
+dla aplikacji wymagających szybkich odpowiedzi i mniejszych opóźnień, nawet
+w bezpiecznych połączeniach.
+Dla danych typu INT i STRING, REST API wyraźnie przewyższał SOAP, osiągając
+krótsze czasy odpowiedzi i mniejsze latencje. W przypadku bardziej złożonych
+operacji, takich jak zapytania SQL, różnice były mniej wyraźne, ale REST nadal utrzymywał
+przewagę w większości przypadków. Dla dużych plików (LF), REST API także
+wykazał znacznie lepszą wydajność w porównaniu z SOAP, co jest istotne przy przesyłaniu
+dużych objętości danych.
 
-### Wnioski do eksperymentu
+#### Zestawienie pomiarów dla poszczególnych typów
+
+##### INT
+Wyniki dla INT pokazują wyraźne różnice między protokołami REST i SOAP pod względem czasu odpowiedzi i latencji.
+
+![Wykres przedstawiający wyniki badania mikroserwisów INT](grafiki/INT.png)
+
+##### STRING
+Dla typu danych STRING, REST wykazał lepszą wydajność niż SOAP, co podkreśla jego skuteczność w szybkich transakcjach.
+
+![Wykres przedstawiający wyniki badania mikroserwisów STRING](grafiki/STRING.png)
+
+##### SQL
+W przypadku zapytań SQL, wyniki były bardziej zrównoważone, ale zazwyczaj REST miał lepszą wydajność w porównaniu do SOAP.
+
+![Wykres przedstawiający wyniki badania mikroserwisów SQL](grafiki/SQL.png)
+
+##### LF
+Dane dotyczące dużych plików (LF) pokazały, że REST jest znacznie bardziej efektywny w zakresie zarządzania dużymi wolumenami danych.
+
+![Wykres przedstawiający wyniki badania mikroserwisów LF](grafiki/LF.png)
+
+
+
+
+#### Wnioski do eksperymentu
 Na podstawie przeprowadzonych badań można stwierdzić, że zarówno SOAP, jak i REST API mają swoje zalety i wady. REST API charakteryzuje się krótszym czasem odpowiedzi i mniejszymi opóźnieniami, co czyni go bardziej wydajnym w zastosowaniach wymagających szybkich odpowiedzi. SOAP oferuje lepsze mechanizmy bezpieczeństwa i niezawodność, co może być kluczowe w aplikacjach wymagających wysokiego poziomu bezpieczeństwa i integralności danych.
 
 ### Analiza i interpretacja
